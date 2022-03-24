@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="CalculatorMvvm.View.CalculatorPage">
     <StackLayout>
         <StackLayout Spacing="0">
@@ -9,7 +9,7 @@
             VerticalOptions="StartAndExpand"
             HorizontalOptions="FillAndExpand" HeightRequest="50" 
             TextColor="White" 
-            Text="gg"
+            Text="{Binding Expression}"
             FontSize="33"
             VerticalTextAlignment="End"
             HorizontalTextAlignment="End"
@@ -19,7 +19,7 @@
             VerticalOptions="StartAndExpand"
             HorizontalOptions="FillAndExpand" HeightRequest="50" 
             TextColor="White" 
-            Text="gg"
+            Text="{Binding Result}"
             FontSize="23"
             VerticalTextAlignment="Start"
             HorizontalTextAlignment="End"
@@ -27,23 +27,162 @@
         </StackLayout>
 
         <StackLayout 
-            BackgroundColor="Orange" 
+            BackgroundColor="Black" 
 
             VerticalOptions="FillAndExpand">
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25*"/>
-                    <ColumnDefinition Width="25*"/>
-                    <ColumnDefinition Width="25*"/>
-                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
+
+                <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Gray" 
+                        Grid.Column="0"
+                        Command="{Binding EnterAcCommand}" 
+                        CommandParameter="{Binding}" 
+                        Text="AC"
+                        TextColor="White"
+                        Margin="5, 10"
+                        WidthRequest="50"/>
+                <Frame 
+                    Grid.Column="1"  
+                    BackgroundColor="Transparent"
+                    Padding="0"
+                    Margin="5, 10"
+                    BorderColor="White"
+                    CornerRadius="50">
+                <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Transparent" 
+                        Command="{Binding DeleteCharCommand}" 
+                        CommandParameter="{Binding}" 
+                        Grid.Column="1"
+                        Text="&lt;-"
+                        FontSize="24"
+                        TextColor="White"
+                        Margin="5, 10"
+                        WidthRequest="50"/>
+                   </Frame>
+                    <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="Black" 
+                        Grid.Column="2"
+                        Text="%"
+                        TextColor="White"
+                        Margin="10"
+                        WidthRequest="50"/>
+                    <Button 
+                        CornerRadius="50" 
+                        x:Name="Del"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="Black" 
+                        Grid.Column="3"
+                        Text="/"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference Del}" 
+                        Margin="10"
+                        WidthRequest="50"/>
+
+                <Frame 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent" 
+                    Padding="0" 
+                    BorderColor="DarkGray">
+                    <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="Black" 
+                        Grid.Column="0"
+                        x:Name="btn7"
+                        Text="7"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn7}"
+                        Grid.Row="1"
+                        Margin="10"
+                        WidthRequest="50"/>
+                </Frame>
+
+                <Frame
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent" 
+                    Padding="0" 
+                    BorderColor="DarkGray">
+                    <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="Black" 
+                        Grid.Column="1"
+                        x:Name="btn8"
+                        Text="8"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn8}"
+                        Grid.Row="1"
+                        Margin="10"
+                        WidthRequest="50"/>
+                </Frame>
+
+                <Frame 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent" 
+                    Padding="0" 
+                    BorderColor="DarkGray">
+                    <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="Black" 
+                        Grid.Column="2"
+                        x:Name="btn9"
+                        Text="9"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn9}"
+                        Grid.Row="1"
+                        Margin="10"
+                        WidthRequest="50"/>
+                </Frame>
+                <Button 
+                        CornerRadius="50" 
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        BackgroundColor="Black" 
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        x:Name="UMN"
+                        Text="*"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference UMN}"
+                        Margin="10"
+                        WidthRequest="50"/> 
+                        
+
 
                     <Button 
                         CornerRadius="50" 
@@ -51,6 +190,12 @@
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="0"
+                        x:Name="btn4"
+                        Text="4"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn4}"
+                        Grid.Row="2"
                         Margin="10"
                         WidthRequest="50"/>
                     <Button 
@@ -59,6 +204,12 @@
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="1"
+                        Grid.Row="2"
+                        x:Name="btn5"
+                        Text="5"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn5}"
                         Margin="10"
                         WidthRequest="50"/>
                     <Button 
@@ -67,6 +218,12 @@
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="2"
+                        x:Name="btn6"
+                        Text="6"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn6}"
+                        Grid.Row="2"
                         Margin="10"
                         WidthRequest="50"/>
                     <Button 
@@ -75,82 +232,17 @@
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="3"
+                        x:Name="Minus"
+                        Text="-"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference Minus}"
+                        Grid.Row="2"
                         Margin="10"
-                        WidthRequest="50"/>      
+                        WidthRequest="50"/>     
                         
-                    
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="0"
-                        Grid.Row="1"
-                        Margin="10"
-                        WidthRequest="50"/>
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="1"
-                        Grid.Row="1"
-                        Margin="10"
-                        WidthRequest="50"/>
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="2"
-                        Grid.Row="1"
-                        Margin="10"
-                        WidthRequest="50"/>
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="3"
-                        Grid.Row="1"
-                        Margin="10"
-                        WidthRequest="50"/>                    
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="0"
-                        Grid.Row="2"
-                        Margin="10"
-                        WidthRequest="50"/>
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="1"
-                        Grid.Row="2"
-                        Margin="10"
-                        WidthRequest="50"/>
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="2"
-                        Grid.Row="2"
-                        Margin="10"
-                        WidthRequest="50"/>
-                    <Button 
-                        CornerRadius="50" 
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"
-                        BackgroundColor="Black" 
-                        Grid.Column="3"
-                        Grid.Row="2"
-                        Margin="10"
-                        WidthRequest="50"/>                    
+
+
                     <Button 
                         CornerRadius="50" 
                         VerticalOptions="CenterAndExpand"
@@ -158,6 +250,11 @@
                         BackgroundColor="Black" 
                         Grid.Column="0"
                         Grid.Row="3"
+                        x:Name="btn1"
+                        Text="1"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn1}"
                         Margin="10"
                         WidthRequest="50"/>
                     <Button 
@@ -166,6 +263,11 @@
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="1"
+                        x:Name="btn2"
+                        Text="2"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn2}"
                         Grid.Row="3"
                         Margin="10"
                         WidthRequest="50"/>
@@ -176,24 +278,41 @@
                         BackgroundColor="Black" 
                         Grid.Column="2"
                         Grid.Row="3"
+                        x:Name="btn3"
+                        Text="3"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn3}"
                         Margin="10"
                         WidthRequest="50"/>
-                    <Button 
+                <Button 
                         CornerRadius="50" 
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="3"
                         Grid.Row="3"
+                        x:Name="Plus"
+                        Text="+"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference Plus}"
                         Margin="10"
-                        WidthRequest="50"/>                    
-                    <Button 
+                        WidthRequest="50"/>
+
+
+
+                <Button 
                         CornerRadius="50" 
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="0"
                         Grid.Row="4"
+                        x:Name="q"
+                        Text="qq"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
                         Margin="10"
                         WidthRequest="50"/>
                     <Button 
@@ -203,6 +322,11 @@
                         BackgroundColor="Black" 
                         Grid.Column="1"
                         Grid.Row="4"
+                        x:Name="btn0"
+                        Text="0"
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn0}"
                         Margin="10"
                         WidthRequest="50"/>
                     <Button 
@@ -211,6 +335,11 @@
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Black" 
                         Grid.Column="2"
+                        x:Name="btn"
+                        Text="."
+                        TextColor="White"
+                        Command="{Binding EnterCharCommand}" 
+                        CommandParameter="{x:Reference btn}"
                         Grid.Row="4"
                         Margin="10"
                         WidthRequest="50"/>
@@ -222,6 +351,11 @@
                         Grid.Column="3"
                         Grid.Row="4"
                         Margin="10"
+                        x:Name="Execute"
+                        Text="="
+                        TextColor="White"
+                        Command="{Binding CalculateCommand}" 
+                        CommandParameter="{Binding}"
                         WidthRequest="50"/>
             </Grid>
         </StackLayout>

@@ -20,6 +20,7 @@ namespace CalculatorMvvm
 
         protected override void OnSleep()
         {
+
         }
 
         protected override void OnResume()
