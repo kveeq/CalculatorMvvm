@@ -12,7 +12,7 @@ namespace CalculatorMvvm.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public string Expression { get => expression; set { expression = value; OnPropertyChanged("Expression"); } }
-        public string expression = "0";
+        public string expression = "";
         public string Result { get => result; set {result = value; OnPropertyChanged("Result");}}
         public string result = "0";
 
@@ -38,24 +38,54 @@ namespace CalculatorMvvm.ViewModel
         private void EnterChar(object exp)
         {
             var view = exp as Button;
-            Expression += view.Text;
+            if (CheckChars(view.Text))
+            {
+                Expression += view.Text;
+            }
+        }
+
+        private bool CheckChars(string text)
+        {
+            if (text == "+" || text == "-" || text == "*" || text == "/")
+            {
+                if (Expression[Expression.Length - 1] == '+' || Expression[Expression.Length - 1] == '*' || Expression[Expression.Length - 1] == '-' || Expression[Expression.Length - 1] == '/')
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         
         private void DeleteChar()
         {
-            Expression = Expression.Remove(Expression.Length - 1);
+            try
+            {
+                Expression = Expression.Remove(Expression.Length - 1);
+            }
+            catch
+            {
+                Result = "0";
+            }
         }
 
         private void EnterAc()
         {
             Expression = "";
+            Result = "0";
         }
 
         private void Calculate()
         {
-            if (Char.IsDigit(expression[expression.Length-1]))
+            try
             {
-                Result = Convert.ToDouble(new DataTable().Compute(Expression, "")).ToString();
+                if (Char.IsDigit(expression[expression.Length - 1]) || expression[expression.Length - 1] == '%')
+                {
+                    Result = Convert.ToDouble(new DataTable().Compute(Expression, "")).ToString();
+                }
+            }
+            catch
+            {
+                Result = "Ошибка, некорректные данные";
             }
         }
     }
